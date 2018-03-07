@@ -1,0 +1,121 @@
+
+/*Font*/
+/* latin */
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Indie Flower'), local('IndieFlower'), url(../font/10JVD_humAd5zP2yrFqw6ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/*Basic*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	font-family: 'Indie Flower', cursive;
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+	background: url(../images/background.jpg) top left no-repeat;
+}
+/*Header*/
+.title{
+	color: #ff005d;
+	font-size: 50px;
+	text-transform: uppercase;
+}
+/*Game Options*/
+.gameOptions{
+	width: 200px;
+	position: fixed;
+	left: 100px;
+	min-height: 456px;
+	background: rgba(117,43,128,0.5);
+	border-radius: 5%;
+}
+.gameOptions ul{
+	list-style-type: none;
+}
+.gameOptions ul li{
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 20px;
+}
+.subTitle{
+	text-align: center;
+	display: block;
+	font-size: 26px;
+	margin:10px 0px;
+	font-weight: bold;
+	color: #fff;
+}
+.gameOptions ul li.subTitle{
+	
+}
+.gameOptions ul li a{
+	display: block;
+	text-decoration: none;
+	color: #FF005D;
+}
+.gameOptions ul li:hover a{
+	color: #fff;
+}
+.gameOptions ul li a.active{}
+	/* Game Rule*/
+.gameRules{
+	list-style-type: none;
+	position: fixed;
+	right: 100px;
+	width: 200px;
+	color: #fff;
+}
+.gameRules li{
+	margin-bottom: 10px;
+}
+.gameRules li.subTitle{}
+
+/* GUI */
+.sudoku{
+	width:456px;
+	height:456px;
+	border:1px solid #7763B7;
+	margin: 10px auto;
+	background-image: radial-gradient(ellipse farthest-corner at 45px 45px, rgba(135,112,228,0.3) 3%, rgba(52,27,121,1) );
+}
+.block{
+	width: 150px;
+	height: 150px;
+	border: 1px solid yellow;
+	float: left;
+}
+.cells,.cellsHighlighted{
+	width: 46px;
+	height: 46px;
+	float: left;
+	border: 1px solid yellow;
+	padding:1px;
+	text-align: center;
+	line-height: 43px;
+	font-weight: bold;
+	font-size: 28px;
+	color: #fff;
+	transition: background-color 0.5s ease;
+}
+.cellsHighlighted{
+	border:2px solid #317082;
+	padding: 0px;
+	background-color:#ccc;
+}
+.cells[disabled="true"]{
+	background-color: #eee;
+	color: #000;
+}
+/* Color */
+.colorOrange{
+	background-color: #DEB275;
+	border-color: #52371C;
+}

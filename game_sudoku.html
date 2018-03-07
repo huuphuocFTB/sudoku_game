@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Sudoku Game</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="images/icon.ico" />
+	<!-- CSS Style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/control.js"></script>
+	<script type="text/javascript" src="js/solver.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			newGame();
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<center><h1 class="title">Sudoku</h1></center>
+		<ul class="gameOptions" id="gameOptions">
+			<ul>
+				<div class="subTitle">Game Options</div>
+				<li><a href="#" onclick="newGame();return false">New Board</a></li>
+				<li><a href="#" onclick="solve();return false">Solve</a></li>
+				<li><a href="#" onclick="save();return false">Save Game</a>
+			</ul>
+			<ul>
+				<div class="subTitle">Get Puzzle For</div>
+				<li><a href="#" onclick="switchLevel(1,this);return false">Beginner</a></li>
+				<li><a href="#" onclick="switchLevel(2,this);return false">Moderate</a></li>
+				<li><a href="#" onclick="switchLevel(3,this);return false">Hard</a></li>
+				<li><a href="#" onclick="switchLevel(4,this);return false">Expert</a></li>
+			</ul>
+		</ul>
+		<ul class="gameRules" id="gameRules">
+			<div class="subTitle">Goal of the game</div>
+			<li>1. No duplicates of the numbers 1-9 horizontally.</li>
+			<li>2. No duplicates of the numbers 1-9 vertically</li>
+			<li>3. No duplicates of the numbers 1-9 in the 3x3 cell groups</li>
+		</ul>
+	</header>
+	<main>
+		<div class="sudoku" id="sudoku">
+			<div class="block" id="block_0">
+				<div class="cells" id="cell_0_0"><span></span></div>
+				<div class="cells" id="cell_0_1"><span></span></div>
+				<div class="cells" id="cell_0_2"><span></span></div>
+				<div class="cells" id="cell_1_0"><span></span></div>
+				<div class="cells" id="cell_1_1"><span></span></div>
+				<div class="cells" id="cell_1_2"><span></span></div>
+				<div class="cells" id="cell_2_0"><span></span></div>
+				<div class="cells" id="cell_2_1"><span></span></div>
+				<div class="cells" id="cell_2_2"><span></span></div>
+			</div>
+			<div class="block" id="block_1">
+				<div class="cells" id="cell_0_3"><span></span></div>
+				<div class="cells" id="cell_0_4"><span></span></div>
+				<div class="cells" id="cell_0_5"><span></span></div>
+				<div class="cells" id="cell_1_3"><span></span></div>
+				<div class="cells" id="cell_1_4"><span></span></div>
+				<div class="cells" id="cell_1_5"><span></span></div>
+				<div class="cells" id="cell_2_3"><span></span></div>
+				<div class="cells" id="cell_2_4"><span></span></div>
+				<div class="cells" id="cell_2_5"><span></span></div>
+			</div>
+			<div class="block" id="block_2">
+				<div class="cells" id="cell_0_6"><span></span></div>
+				<div class="cells" id="cell_0_7"><span></span></div>
+				<div class="cells" id="cell_0_8"><span></span></div>
+				<div class="cells" id="cell_1_6"><span></span></div>
+				<div class="cells" id="cell_1_7"><span></span></div>
+				<div class="cells" id="cell_1_8"><span></span></div>
+				<div class="cells" id="cell_2_6"><span></span></div>
+				<div class="cells" id="cell_2_7"><span></span></div>
+				<div class="cells" id="cell_2_8"><span></span></div>
+			</div>
+			<div class="block" id="block_3">
+				<div class="cells" id="cell_3_0"><span></span></div>
+				<div class="cells" id="cell_3_1"><span></span></div>
+				<div class="cells" id="cell_3_2"><span></span></div>
+				<div class="cells" id="cell_4_0"><span></span></div>
+				<div class="cells" id="cell_4_1"><span></span></div>
+				<div class="cells" id="cell_4_2"><span></span></div>
+				<div class="cells" id="cell_5_0"><span></span></div>
+				<div class="cells" id="cell_5_1"><span></span></div>
+				<div class="cells" id="cell_5_2"><span></span></div>
+			</div>
+			<div class="block" id="block_4">
+				<div class="cells" id="cell_3_3"><span></span></div>
+				<div class="cells" id="cell_3_4"><span></span></div>
+				<div class="cells" id="cell_3_5"><span></span></div>
+				<div class="cells" id="cell_4_3"><span></span></div>
+				<div class="cells" id="cell_4_4"><span></span></div>
+				<div class="cells" id="cell_4_5"><span></span></div>
+				<div class="cells" id="cell_5_3"><span></span></div>
+				<div class="cells" id="cell_5_4"><span></span></div>
+				<div class="cells" id="cell_5_5"><span></span></div>
+			</div>
+			<div class="block" id="block_5">
+				<div class="cells" id="cell_3_6"><span></span></div>
+				<div class="cells" id="cell_3_7"><span></span></div>
+				<div class="cells" id="cell_3_8"><span></span></div>
+				<div class="cells" id="cell_4_6"><span></span></div>
+				<div class="cells" id="cell_4_7"><span></span></div>
+				<div class="cells" id="cell_4_8"><span></span></div>
+				<div class="cells" id="cell_5_6"><span></span></div>
+				<div class="cells" id="cell_5_7"><span></span></div>
+				<div class="cells" id="cell_5_8"><span></span></div>
+			</div>
+			<div class="block" id="block_6">
+				<div class="cells" id="cell_6_0"><span></span></div>
+				<div class="cells" id="cell_6_1"><span></span></div>
+				<div class="cells" id="cell_6_2"><span></span></div>
+				<div class="cells" id="cell_7_0"><span></span></div>
+				<div class="cells" id="cell_7_1"><span></span></div>
+				<div class="cells" id="cell_7_2"><span></span></div>
+				<div class="cells" id="cell_8_0"><span></span></div>
+				<div class="cells" id="cell_8_1"><span></span></div>
+				<div class="cells" id="cell_8_2"><span></span></div>
+			</div>
+			<div class="block" id="block_7">
+				<div class="cells" id="cell_6_3"><span></span></div>
+				<div class="cells" id="cell_6_4"><span></span></div>
+				<div class="cells" id="cell_6_5"><span></span></div>
+				<div class="cells" id="cell_7_3"><span></span></div>
+				<div class="cells" id="cell_7_4"><span></span></div>
+				<div class="cells" id="cell_7_5"><span></span></div>
+				<div class="cells" id="cell_8_3"><span></span></div>
+				<div class="cells" id="cell_8_4"><span></span></div>
+				<div class="cells" id="cell_8_5"><span></span></div>
+			</div>
+			<div class="block" id="block_8">
+				<div class="cells" id="cell_6_6"><span></span></div>
+				<div class="cells" id="cell_6_7"><span></span></div>
+				<div class="cells" id="cell_6_8"><span></span></div>
+				<div class="cells" id="cell_7_6"><span></span></div>
+				<div class="cells" id="cell_7_7"><span></span></div>
+				<div class="cells" id="cell_7_8"><span></span></div>
+				<div class="cells" id="cell_8_6"><span></span></div>
+				<div class="cells" id="cell_8_7"><span></span></div>
+				<div class="cells" id="cell_8_8"><span></span></div>
+			</div>
+		</div>
+	</main>
+	<footer></footer>
+</body>
+</html>
